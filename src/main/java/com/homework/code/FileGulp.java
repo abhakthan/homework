@@ -63,10 +63,13 @@ public class FileGulp {
      * @throws IOException
      */
     private void readLines(String fileName) throws IOException {
+        BufferedReader br = null;
+        FileReader fr = null;
+
         try {
             File f = new File(fileName);
-            FileReader fr = new FileReader(f);
-            BufferedReader br = new BufferedReader(fr);
+            fr = new FileReader(f);
+            br = new BufferedReader(fr);
             lines = new ArrayList<String>();
             String l;
 
@@ -76,6 +79,9 @@ public class FileGulp {
 
         } catch (IOException ioe) {
             throw ioe;
+        } finally {
+            br.close();
+            fr.close();
         }
     }
 }
